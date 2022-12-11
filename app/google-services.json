@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "121588706302",
+    "project_id": "deckgen-b0ea1",
+    "storage_bucket": "deckgen-b0ea1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121588706302:android:2376ab8197e9116c296eaf",
+        "android_client_info": {
+          "package_name": "com.example.yugiohdeckgenarator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "121588706302-ptiro0viiv6u89jrvlqffafc7jm0fp43.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMj1ppReKxywYRWWl5JVFDsS9mWqxCOTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121588706302-ptiro0viiv6u89jrvlqffafc7jm0fp43.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

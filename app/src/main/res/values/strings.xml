@@ -7,4 +7,7 @@
     <string name="password">Password</string>
     <string name="login">LOGIN</string>
     <string name="register">REGISTER</string>
+    <string name="facebook_app_id">711937996752892</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">65e2ffd9dc67b2361a61c1881d13011a</string>
 </resources>
