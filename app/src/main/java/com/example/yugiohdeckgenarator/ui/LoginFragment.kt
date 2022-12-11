@@ -1,13 +1,198 @@
 package com.example.yugiohdeckgenarator.ui
 
+import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
 import com.example.yugiohdeckgenarator.R
+import com.example.yugiohdeckgenarator.base.BaseFragment
+import com.example.yugiohdeckgenarator.databinding.FragmentLoginBinding
+import com.facebook.*
+import com.facebook.login.LoginResult
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FacebookAuthProvider
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
+
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private val auth by lazy { Firebase.auth }
+    var callbackManager: CallbackManager? = null
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val user = auth.currentUser
+
+
+        callbackManager = CallbackManager.Factory.create()
+
+        binding.registerbutton.setOnClickListener {
+            registerButton(binding.etMail.text.toString(), binding.etPassword.text.toString())
+
+
+        }
+
+        binding.loginbutton.setOnClickListener {
+            loginButton(binding.etMail.text.toString(), binding.etPassword.text.toString())
+
+
+        }
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
+
+        binding.googlebutton.setOnClickListener {
+            googleSignIn()
+        }
+
+        binding.facebookbutton.setReadPermissions("email", "public_profile")
+        binding.facebookbutton.setFragment(this)
+        FacebookSdk.sdkInitialize(requireContext())
+
+        binding.facebookbutton.registerCallback(callbackManager, object :
+            FacebookCallback<LoginResult> {
+            override fun onCancel() {
+            }
+
+            override fun onError(error: FacebookException) {
+            }
+
+            override fun onSuccess(result: com.facebook.login.LoginResult) {
+                handleFacebookAccessToken(result.accessToken)
+            }
+        })
+    }
+
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
+                Log.e(ContentValues.TAG, "Google sing in failed", e)
+            }
+        }
+        callbackManager?.onActivityResult(requestCode, resultCode, data)
+
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    if (task.result.additionalUserInfo!!.isNewUser){
+
+                    }
+                    updateUI(user)
+
+                } else {
+                    updateUI(null)
+                }
+            }
+    }
+
+    private fun registerEmailAndPassword(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+
+            if (it.isSuccessful) {
+
+                Toast.makeText(requireContext(), "Register Successful", Toast.LENGTH_LONG).show()
+
+
+            }
+
+        }.addOnFailureListener {
+            Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun loginEmailAndPassword(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+            Toast.makeText(
+                requireContext(),
+                "Welcome ${auth.currentUser?.email.toString()}",
+                Toast.LENGTH_LONG
+            ).show()
+        }.addOnFailureListener {
+            Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun googleSignIn() {
+        val singInIntent = googleSignInClient.signInIntent
+        startActivityForResult(singInIntent, RC_SIGN_IN)
+    }
+
+    companion object {
+        const val RC_SIGN_IN = 1001
+        const val EXTRA_NAME = "EXTRA NAME"
+    }
+
+    private fun updateUI(user: FirebaseUser?) {
+        if (user != null) {
+        }
+    }
+
+
+    private fun handleFacebookAccessToken(accessToken: AccessToken) {
+        val credential = FacebookAuthProvider.getCredential(accessToken.token)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener {
+                val user = auth.currentUser
+                updateUI(user)
+            }.addOnFailureListener { e ->
+                Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_LONG).show()
+            }
+    }
+
+    private fun registerButton(email: String, password: String) {
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(
+                requireContext(),
+                "Email and password cannot be empty",
+                Toast.LENGTH_LONG
+            ).show()
+        } else {
+            registerEmailAndPassword(email, password)
+        }
+    }
+
+
+    private fun loginButton(email: String, password: String) {
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(
+                requireContext(),
+                "Email and password cannot be empty",
+                Toast.LENGTH_LONG
+            ).show()
+        } else {
+            loginEmailAndPassword(email, password)
+        }
+
+    }
 
 }
