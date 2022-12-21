@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.yugiohdeckgenarator.R
 import com.example.yugiohdeckgenarator.base.BaseFragment
+import com.example.yugiohdeckgenarator.data.entity.UserData
 import com.example.yugiohdeckgenarator.databinding.FragmentLoginBinding
 import com.facebook.*
-import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -21,20 +22,24 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
     private lateinit var googleSignInClient: GoogleSignInClient
     private val auth by lazy { Firebase.auth }
     var callbackManager: CallbackManager? = null
+    private val db by lazy { Firebase.firestore }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val user = auth.currentUser
 
-
+        if (user != null) {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToDeckFragment())
+        }
         callbackManager = CallbackManager.Factory.create()
 
         binding.registerbutton.setOnClickListener {
@@ -64,8 +69,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         binding.facebookbutton.setFragment(this)
         FacebookSdk.sdkInitialize(requireContext())
 
-        binding.facebookbutton.registerCallback(callbackManager, object :
-            FacebookCallback<LoginResult> {
+        binding.facebookbutton.registerCallback(callbackManager!!, object :
+            FacebookCallback<com.facebook.login.LoginResult> {
             override fun onCancel() {
             }
 
@@ -103,7 +108,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     if (task.result.additionalUserInfo!!.isNewUser){
-
+                        db.collection("user").document(user!!.uid).set(UserData())
                     }
                     updateUI(user)
 
@@ -117,9 +122,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
 
             if (it.isSuccessful) {
-
                 Toast.makeText(requireContext(), "Register Successful", Toast.LENGTH_LONG).show()
+                db.collection("user").document(auth.currentUser!!.uid).set(UserData()).addOnCompleteListener {task ->
 
+                }.addOnFailureListener {excepiton ->
+                    Toast.makeText(context,excepiton.localizedMessage,Toast.LENGTH_LONG).show()
+                }
 
             }
 
@@ -130,6 +138,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     private fun loginEmailAndPassword(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToDeckFragment())
             Toast.makeText(
                 requireContext(),
                 "Welcome ${auth.currentUser?.email.toString()}",
@@ -152,6 +161,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToDeckFragment())
         }
     }
 
@@ -162,6 +172,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             .addOnCompleteListener {
                 val user = auth.currentUser
                 updateUI(user)
+                db.collection("user").document(user!!.uid).set(UserData())
             }.addOnFailureListener { e ->
                 Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_LONG).show()
             }
@@ -194,5 +205,4 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         }
 
     }
-
 }
