@@ -10,6 +10,7 @@ import com.example.yugiohdeckgenarator.base.BaseFragment
 import com.example.yugiohdeckgenarator.data.entity.myCard
 import com.example.yugiohdeckgenarator.databinding.FragmentCreatCardBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,8 +47,9 @@ class CreatCardFragment :
                 val uploadImageReferance = storage.reference.child("images").child(imageName)
                 uploadImageReferance.downloadUrl.addOnSuccessListener { uri ->
                     val downloadUrl = uri.toString()
+                    val addCard = myCard(desc,name,downloadUrl,atk,def)
                     db.collection("user").document(auth.currentUser!!.uid)
-                        .set(myCard(desc, name, downloadUrl, atk, def))
+                        .update("myCardList",FieldValue.arrayUnion(addCard))
 
                 }
             }
