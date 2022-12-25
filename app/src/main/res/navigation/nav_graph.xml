@@ -33,28 +33,32 @@
         android:id="@+id/creatCardFragment"
         android:name="com.example.yugiohdeckgenarator.ui.creatCardFragment.CreatCardFragment"
         android:label="fragment_creat_card"
-        tools:layout="@layout/fragment_creat_card" >
-        <action
-            android:id="@+id/action_creatCardFragment_to_mySpecialCardFragment"
-            app:destination="@id/mySpecialCardFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_creat_card" />
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.yugiohdeckgenarator.ui.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/myDeckFragment"
         android:name="com.example.yugiohdeckgenarator.ui.MyDeckFragment"
         android:label="fragment_my_deck"
         tools:layout="@layout/fragment_my_deck" >
         <action
-            android:id="@+id/action_myDeckFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/action_myDeckFragment_to_mySpecialCardFragment"
+            app:destination="@id/mySpecialCardFragment" />
     </fragment>
     <fragment
         android:id="@+id/mySpecialCardFragment"
         android:name="com.example.yugiohdeckgenarator.ui.MySpecialCardFragment"
         android:label="fragment_my_special_card"
-        tools:layout="@layout/fragment_my_special_card" />
+        tools:layout="@layout/fragment_my_special_card" >
+        <action
+            android:id="@+id/action_mySpecialCardFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 </navigation>

@@ -1,8 +1,17 @@
 package com.example.yugiohdeckgenarator.ui
 
-import androidx.fragment.app.Fragment
+import android.os.Bundle
+import android.view.View
+import com.example.yugiohdeckgenarator.base.BaseFragment
+import com.example.yugiohdeckgenarator.databinding.FragmentMyDeckBinding
 
 
-class MyDeckFragment : Fragment() {
+class MyDeckFragment : BaseFragment<FragmentMyDeckBinding>(FragmentMyDeckBinding::inflate) {
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
 
 }
