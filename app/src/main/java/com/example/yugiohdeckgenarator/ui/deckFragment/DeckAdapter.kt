@@ -2,6 +2,8 @@ package com.example.yugiohdeckgenarator.ui.deckFragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yugiohdeckgenarator.data.entity.Card
 import com.example.yugiohdeckgenarator.data.entity.CardData
@@ -25,6 +27,10 @@ class DeckAdapter : RecyclerView.Adapter<DeckAdapter.CardHolder>() {
         holder.binding.imageView.downloadFromUrl(
             list[position].cardImage?.get(0)?.image
         )
+        holder.binding.root.setOnClickListener {
+            val action = DeckFragmentDirections.actionDeckFragmentToDetailFragment(list[position].cardImage?.get(0)?.image.toString())
+            it.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int = list.size
