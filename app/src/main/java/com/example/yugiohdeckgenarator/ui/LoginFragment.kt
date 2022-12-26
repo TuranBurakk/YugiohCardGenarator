@@ -83,6 +83,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         })
     }
 
+    override fun onStart() {
+        super.onStart()
+        hideBottomBar()
+    }
+
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

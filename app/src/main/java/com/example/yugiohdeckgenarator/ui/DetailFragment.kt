@@ -1,12 +1,8 @@
 package com.example.yugiohdeckgenarator.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-import com.example.yugiohdeckgenarator.R
 import com.example.yugiohdeckgenarator.base.BaseFragment
 import com.example.yugiohdeckgenarator.databinding.FragmentDetailBinding
 import com.example.yugiohdeckgenarator.utils.downloadFromUrl
