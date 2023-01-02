@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UserData(
-    val cardList : List<FireCardData>? = listOf(),
+    val cardList : List<CardListIn>? = listOf(),
     val myCardList: List<myCard>? = listOf()
 ):Parcelable
 
@@ -23,4 +23,9 @@ data class FireCardData(
     val name : String? = null,
     val archetype : String? = null,
     val image : String? = null
+):Parcelable
+
+@Parcelize
+data class CardListIn(
+    val CardListIn : List<FireCardData>? = listOf()
 ):Parcelable

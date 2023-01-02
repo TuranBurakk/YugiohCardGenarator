@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MySpecialCardFragment">
+    tools:context=".ui.mySpecialCard.MySpecialCardFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -19,5 +19,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/deck_row"/>
+        tools:listitem="@layout/my_card_row"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

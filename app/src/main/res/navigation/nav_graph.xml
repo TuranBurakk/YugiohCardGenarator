@@ -54,7 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/mySpecialCardFragment"
-        android:name="com.example.yugiohdeckgenarator.ui.MySpecialCardFragment"
+        android:name="com.example.yugiohdeckgenarator.ui.mySpecialCard.MySpecialCardFragment"
         android:label="fragment_my_special_card"
         tools:layout="@layout/fragment_my_special_card" >
         <action

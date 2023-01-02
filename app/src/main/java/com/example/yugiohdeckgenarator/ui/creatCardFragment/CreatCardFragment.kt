@@ -28,16 +28,19 @@ class CreatCardFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val name = binding.cardName.text.toString()
-        val desc = binding.cardDesc.text.toString()
-        val atk = binding.atkEt.text.toString()
-        val def = binding.defEt.text.toString()
+
 
         binding.cardImage.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery, 100)
         }
         binding.setImage.setOnClickListener {
+
+            val name = binding.cardName.text.toString()
+            val desc = binding.cardDesc.text.toString()
+            val atk = binding.atkEt.text.toString()
+            val def = binding.defEt.text.toString()
+
             val uuid = UUID.randomUUID()
             val imageName = "${uuid}.jpg"
             val refrance = storage.reference

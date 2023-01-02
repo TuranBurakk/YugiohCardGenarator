@@ -29,8 +29,8 @@
 
     <ImageView
         android:id="@+id/cardImage"
-        android:layout_width="290dp"
-        android:layout_height="280dp"
+        android:layout_width="289dp"
+        android:layout_height="301dp"
         android:layout_marginStart="59dp"
         android:layout_marginEnd="59dp"
         android:layout_marginBottom="32dp"
@@ -59,8 +59,8 @@
 
     <EditText
         android:id="@+id/atkEt"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="43dp"
+        android:layout_height="32dp"
         android:layout_marginEnd="76dp"
         android:layout_marginBottom="13dp"
         android:ems="10"
