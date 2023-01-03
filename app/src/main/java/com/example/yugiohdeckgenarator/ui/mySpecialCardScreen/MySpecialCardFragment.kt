@@ -1,8 +1,7 @@
-package com.example.yugiohdeckgenarator.ui.mySpecialCard
+package com.example.yugiohdeckgenarator.ui.mySpecialCardScreen
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.yugiohdeckgenarator.base.BaseFragment
 import com.example.yugiohdeckgenarator.data.entity.UserData

@@ -1,12 +1,10 @@
-package com.example.yugiohdeckgenarator.ui.deckFragment
+package com.example.yugiohdeckgenarator.ui.deckScreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yugiohdeckgenarator.data.entity.Card
-import com.example.yugiohdeckgenarator.data.entity.CardData
 import com.example.yugiohdeckgenarator.databinding.DeckRowBinding
 import com.example.yugiohdeckgenarator.utils.downloadFromUrl
 

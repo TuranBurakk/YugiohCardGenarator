@@ -1,4 +1,4 @@
-package com.example.yugiohdeckgenarator.ui.mySpecialCard
+package com.example.yugiohdeckgenarator.ui.mySpecialCardScreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

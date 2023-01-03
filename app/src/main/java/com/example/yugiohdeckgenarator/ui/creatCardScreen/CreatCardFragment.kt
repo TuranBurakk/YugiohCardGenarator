@@ -1,4 +1,4 @@
-package com.example.yugiohdeckgenarator.ui.creatCardFragment
+package com.example.yugiohdeckgenarator.ui.creatCardScreen
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent

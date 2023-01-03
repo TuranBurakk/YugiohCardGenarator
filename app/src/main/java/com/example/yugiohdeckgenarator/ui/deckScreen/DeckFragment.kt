@@ -1,9 +1,8 @@
-package com.example.yugiohdeckgenarator.ui.deckFragment
+package com.example.yugiohdeckgenarator.ui.deckScreen
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.yugiohdeckgenarator.base.BaseFragment
 import com.example.yugiohdeckgenarator.databinding.FragmentDeckBinding

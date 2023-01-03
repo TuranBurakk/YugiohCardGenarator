@@ -1,4 +1,4 @@
-package com.example.yugiohdeckgenarator.ui.deckFragment
+package com.example.yugiohdeckgenarator.ui.deckScreen
 
 import com.example.yugiohdeckgenarator.data.entity.CardData
 import com.example.yugiohdeckgenarator.data.remote.Repository

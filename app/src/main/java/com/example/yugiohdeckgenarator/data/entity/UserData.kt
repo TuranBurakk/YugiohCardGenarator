@@ -20,12 +20,11 @@ data class myCard(
 
 @Parcelize
 data class FireCardData(
-    val name : String? = null,
-    val archetype : String? = null,
     val image : String? = null
 ):Parcelable
 
 @Parcelize
 data class CardListIn(
-    val CardListIn : List<FireCardData>? = listOf()
+    val CardListIn : List<FireCardData>? = listOf(),
+    val name : String? = null
 ):Parcelable
