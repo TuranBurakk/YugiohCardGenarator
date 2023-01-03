@@ -1,4 +1,4 @@
-package com.example.yugiohdeckgenarator.ui.deckFragment
+package com.example.yugiohdeckgenarator.ui.deckScreen
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

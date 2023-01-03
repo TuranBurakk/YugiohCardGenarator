@@ -8,8 +8,8 @@
         android:title="Creat" />
 
     <item
-        android:id="@+id/myDeckFragment"
-        android:title="Deck"/>
+        android:id="@+id/deckListFragment"
+        android:title="Deck" />
     <item
         android:id="@+id/mySpecialCardFragment"
         android:title="MyCreatCard"/>
