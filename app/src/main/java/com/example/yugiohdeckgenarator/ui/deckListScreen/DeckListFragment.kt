@@ -3,6 +3,7 @@ package com.example.yugiohdeckgenarator.ui.deckListScreen
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yugiohdeckgenarator.base.BaseFragment
 import com.example.yugiohdeckgenarator.data.entity.CardListIn
@@ -30,8 +31,8 @@ class DeckListFragment : BaseFragment<FragmentDeckListBinding>(FragmentDeckListB
             binding.DeckNameET.visibility = View.VISIBLE
             binding.floatingActionButton.visibility = View.GONE
             binding.confirmationFloatingActionButton.visibility = View.VISIBLE
-
         }
+
         binding.confirmationFloatingActionButton.setOnClickListener {
             val deckName = binding.DeckNameET.text.toString()
             if (binding.DeckNameET.text != null){
@@ -47,6 +48,7 @@ class DeckListFragment : BaseFragment<FragmentDeckListBinding>(FragmentDeckListB
                 Toast.makeText(requireContext(),"Enter deck name",Toast.LENGTH_LONG).show()
             }
         }
+
 
     }
     private fun getDeck(){
