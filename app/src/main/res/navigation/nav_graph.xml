@@ -56,7 +56,7 @@
             app:destination="@id/addCardFragment" />
         <argument
             android:name="deck"
-            app:argType="com.example.yugiohdeckgenarator.data.entity.CardListIn" />
+            app:argType="string" />
         <action
             android:id="@+id/action_myDeckFragment_to_deckListFragment"
             app:destination="@id/deckListFragment" />
