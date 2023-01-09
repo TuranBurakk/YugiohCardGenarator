@@ -1,5 +1,6 @@
 package com.example.yugiohdeckgenarator.ui.addCardScreen
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,9 +8,12 @@ import com.example.yugiohdeckgenarator.data.entity.Card
 import com.example.yugiohdeckgenarator.databinding.AddCardRowBinding
 import com.example.yugiohdeckgenarator.databinding.AddCardRowBinding.inflate
 import com.example.yugiohdeckgenarator.utils.downloadFromUrl
+import kotlin.math.log
 
-class AddCardAdapter : RecyclerView.Adapter<AddCardAdapter.DeckHolder>() {
+class AddCardAdapter(private var listener: AddDeck? = null) : RecyclerView.Adapter<AddCardAdapter.DeckHolder>() {
+
     private var list = listOf<Card>()
+
 
     class DeckHolder(val binding : AddCardRowBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -21,9 +25,12 @@ class AddCardAdapter : RecyclerView.Adapter<AddCardAdapter.DeckHolder>() {
     }
 
     override fun onBindViewHolder(holder: DeckHolder, position: Int) {
-        holder.binding.imageView.downloadFromUrl(
-            list[position].cardImage?.get(0)?.image
-        )
+       val card = list[position].cardImage?.get(0)?.image.toString()
+        holder.binding.imageView.downloadFromUrl(card)
+        holder.binding.imageView.setOnClickListener {
+            listener?.addItem(card,position)
+            Log.d("card",card)
+        }
 
     }
 
@@ -35,4 +42,6 @@ class AddCardAdapter : RecyclerView.Adapter<AddCardAdapter.DeckHolder>() {
         }
         notifyDataSetChanged()
     }
+
+
 }

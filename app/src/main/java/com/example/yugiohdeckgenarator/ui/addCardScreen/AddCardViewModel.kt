@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.yugiohdeckgenarator.data.entity.Card
 import com.example.yugiohdeckgenarator.data.entity.CardData
 import com.example.yugiohdeckgenarator.ui.deckScreen.DeckUseCase
 import com.example.yugiohdeckgenarator.utils.Resource
@@ -37,4 +38,5 @@ class AddCardViewModel @Inject constructor(
 
         }.launchIn(viewModelScope)
     }
+
 }

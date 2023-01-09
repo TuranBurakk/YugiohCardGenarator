@@ -22,24 +22,9 @@
         android:hint="ENTER NAME"
         android:textColor="@color/red"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cardImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/cardImage"
-        android:layout_width="289dp"
-        android:layout_height="301dp"
-        android:layout_marginStart="59dp"
-        android:layout_marginEnd="59dp"
-        android:layout_marginBottom="32dp"
-        android:src="@drawable/select_photo"
-        app:layout_constraintBottom_toTopOf="@+id/cardDesc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardName" />
 
     <EditText
         android:id="@+id/cardDesc"
@@ -53,40 +38,36 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/atkEt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardImage" />
+        app:layout_constraintTop_toBottomOf="@+id/imageCons" />
 
     <EditText
         android:id="@+id/atkEt"
-        android:layout_width="43dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="76dp"
-        android:layout_marginBottom="13dp"
+        android:layout_width="51dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="9999"
         android:inputType="number"
         android:textColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/cardDesc"
-        app:layout_constraintTop_toBottomOf="@+id/cardDesc" />
+        app:layout_constraintEnd_toStartOf="@+id/defEt"
+        app:layout_constraintStart_toEndOf="@+id/setImage" />
 
     <EditText
         android:id="@+id/defEt"
         android:layout_width="51dp"
         android:layout_height="48dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="31dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="9999"
         android:inputType="number"
         android:textColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/atkEt"
-        app:layout_constraintTop_toBottomOf="@+id/cardDesc" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/setImage"
@@ -101,4 +82,24 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/imageCons"
+        android:layout_width="295dp"
+        android:layout_height="307dp"
+        android:layout_marginTop="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardName">
+
+        <ImageView
+            android:id="@+id/cardImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/select_photo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

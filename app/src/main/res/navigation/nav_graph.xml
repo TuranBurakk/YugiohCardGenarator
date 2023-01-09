@@ -54,6 +54,12 @@
         <action
             android:id="@+id/action_myDeckFragment_to_addCardFragment"
             app:destination="@id/addCardFragment" />
+        <argument
+            android:name="deck"
+            app:argType="com.example.yugiohdeckgenarator.data.entity.CardListIn" />
+        <action
+            android:id="@+id/action_myDeckFragment_to_deckListFragment"
+            app:destination="@id/deckListFragment" />
     </fragment>
     <fragment
         android:id="@+id/mySpecialCardFragment"
@@ -77,5 +83,10 @@
         android:id="@+id/addCardFragment"
         android:name="com.example.yugiohdeckgenarator.ui.addCardScreen.AddCardFragment"
         android:label="fragment_add_card"
-        tools:layout="@layout/fragment_add_card" />
+        tools:layout="@layout/fragment_add_card" >
+        <argument
+            android:name="listName"
+            app:argType="string"
+            android:defaultValue="null" />
+    </fragment>
 </navigation>

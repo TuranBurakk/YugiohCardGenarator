@@ -3,9 +3,9 @@ package com.example.yugiohdeckgenarator.ui.deckListScreen
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yugiohdeckgenarator.base.BaseFragment
+import com.example.yugiohdeckgenarator.data.entity.Card
 import com.example.yugiohdeckgenarator.data.entity.CardListIn
 import com.example.yugiohdeckgenarator.data.entity.UserData
 import com.example.yugiohdeckgenarator.databinding.FragmentDeckListBinding
@@ -36,7 +36,8 @@ class DeckListFragment : BaseFragment<FragmentDeckListBinding>(FragmentDeckListB
         binding.confirmationFloatingActionButton.setOnClickListener {
             val deckName = binding.DeckNameET.text.toString()
             if (binding.DeckNameET.text != null){
-            db.collection("user").document(auth.currentUser!!.uid).update("cardList",FieldValue.arrayUnion(CardListIn(null,deckName)))
+            db.collection("user").document(auth.currentUser!!.uid).update(deckName , listOf<Card>())
+                db.collection("user").document(auth.currentUser!!.uid).update("cardList",FieldValue.arrayUnion(CardListIn(null, name = deckName)))
             binding.deckRecyclerView.visibility = View.VISIBLE
             binding.DeckNameET.visibility = View.GONE
             binding.floatingActionButton.visibility = View.VISIBLE

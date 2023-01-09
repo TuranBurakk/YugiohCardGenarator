@@ -15,17 +15,20 @@ class DeckFragment : BaseFragment<FragmentDeckBinding>(FragmentDeckBinding::infl
     private val viewModel: DeckViewModel by viewModels()
     private val adapter by lazy { DeckAdapter() }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(),2)
 
-
         viewModel.card.observe(viewLifecycleOwner){
             it?.data?.let { it1 -> adapter.setData(it1) }
         }
-
     }
 
+    override fun onStart() {
+        super.onStart()
+        showBottomBar()
+    }
 }

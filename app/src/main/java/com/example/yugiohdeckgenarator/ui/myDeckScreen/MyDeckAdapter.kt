@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yugiohdeckgenarator.data.entity.Card
+import com.example.yugiohdeckgenarator.data.entity.CardListIn
+import com.example.yugiohdeckgenarator.data.entity.FireCardData
 import com.example.yugiohdeckgenarator.databinding.DeckRowBinding
 import com.example.yugiohdeckgenarator.utils.downloadFromUrl
 
@@ -25,4 +27,11 @@ class MyDeckAdapter : RecyclerView.Adapter<MyDeckAdapter.MyDeckHolder>() {
     }
 
     override fun getItemCount() = list.size
+
+    fun setData(newList : List<Card>){
+        if (newList != null) {
+            list = newList
+        }
+        notifyDataSetChanged()
+    }
 }
