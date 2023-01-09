@@ -7,7 +7,6 @@
     tools:context=".ui.myDeckScreen.MyDeckFragment"
     android:background="@color/black">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myDeckRecyclerView"
         android:layout_width="0dp"

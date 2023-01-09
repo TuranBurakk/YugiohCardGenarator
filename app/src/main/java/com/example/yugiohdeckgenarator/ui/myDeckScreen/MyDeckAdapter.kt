@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.yugiohdeckgenarator.databinding.DeckRowBinding
 import com.example.yugiohdeckgenarator.utils.downloadFromUrl
 
-class MyDeckAdapter : RecyclerView.Adapter<MyDeckAdapter.MyDeckHolder>() {
+class MyDeckAdapter(private val listener : DeleteDeck? = null) : RecyclerView.Adapter<MyDeckAdapter.MyDeckHolder>() {
 
     private var list = listOf<String>()
 
@@ -21,6 +21,9 @@ class MyDeckAdapter : RecyclerView.Adapter<MyDeckAdapter.MyDeckHolder>() {
 
     override fun onBindViewHolder(holder: MyDeckHolder, position: Int) {
         holder.binding.imageView.downloadFromUrl(list[position])
+        holder.binding.imageView.setOnClickListener {
+            listener?.delete(list[position],position)
+        }
     }
 
     override fun getItemCount() = list.size
