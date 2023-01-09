@@ -6,7 +6,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yugiohdeckgenarator.data.entity.CardListIn
 import com.example.yugiohdeckgenarator.databinding.DeckListRowBinding
-import com.example.yugiohdeckgenarator.ui.addCardScreen.AddDeck
 
 class DeckListAdapter : RecyclerView.Adapter<DeckListAdapter.DeckListHolder>() {
 
@@ -25,7 +24,7 @@ class DeckListAdapter : RecyclerView.Adapter<DeckListAdapter.DeckListHolder>() {
 
         holder.binding.listNameTV.text = list[position].name.toString()
         holder.binding.root.setOnClickListener {
-            it.findNavController().navigate(DeckListFragmentDirections.actionDeckListFragmentToMyDeckFragment(list[position]))
+            it.findNavController().navigate(DeckListFragmentDirections.actionDeckListFragmentToMyDeckFragment(list[position].name.toString()))
 
         }
 
