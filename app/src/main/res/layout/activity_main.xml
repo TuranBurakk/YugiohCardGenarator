@@ -25,4 +25,5 @@
         app:menu="@menu/bottom_nav"
         />
 
+
 </LinearLayout>

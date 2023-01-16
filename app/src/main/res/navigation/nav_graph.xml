@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_deckFragment_to_deckListFragment"
             app:destination="@id/deckListFragment" />
+        <action
+            android:id="@+id/action_deckFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/creatCardFragment"

@@ -25,14 +25,13 @@ class MySpecialCardFragment : BaseFragment<FragmentMySpecialCardBinding>(Fragmen
         binding.RecyclerView.adapter = adapter
         binding.RecyclerView.layoutManager = GridLayoutManager(requireContext(),2)
         getData()
-
     }
 
     private fun getData(){
         db.collection("user").document(auth.currentUser!!.uid).get().addOnSuccessListener {
             val firebaseList = it.toObject<UserData>()
-            if (firebaseList != null){
-                for (item in firebaseList.myCardList!!){
+            if (firebaseList?.myCardList != null){
+                for (item in firebaseList.myCardList){
                     val image = item.myImage
                     val name = item.cardName
                     val atk = item.atk
